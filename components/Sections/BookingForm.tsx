@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Check, ArrowRight, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 interface FormData {
   firstName: string;
@@ -15,7 +14,6 @@ interface FormData {
 }
 
 const BookingForm: React.FC = () => {
-  const navigate = useNavigate();
   const [step, setStep] = useState<'idle' | 'loading' | 'form' | 'submitting' | 'success'>('idle');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [formData, setFormData] = useState<FormData>({
@@ -148,7 +146,7 @@ const BookingForm: React.FC = () => {
 
     // Check budget condition
     if (formData.budget === "2000$'ın altında") {
-      navigate('/tebrikler');
+      setStep('success');
       return;
     }
 
