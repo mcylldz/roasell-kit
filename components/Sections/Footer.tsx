@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         {/* Logo & Copyright */}
         <div className="text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-            <img src="/assets/logo.png" alt="RoaSell" className="h-8 w-auto object-contain" />
+            <img src="/assets/logo.png" alt="RoaSell" className="h-8 w-auto object-contain" loading="lazy" />
           </div>
           <p className="text-gray-500 text-sm">© RoaSell 2025. Tüm hakları saklıdır.</p>
         </div>

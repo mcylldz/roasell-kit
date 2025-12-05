@@ -2,6 +2,7 @@ import React from 'react';
 import { TESTIMONIALS } from '../../constants';
 import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import VideoLite from '../ui/VideoLite';
 
 const WhatsAppCard = ({ item }: { item: any }) => (
   <div className="bg-[#0b141a] rounded-lg p-2.5 md:p-3 shadow-lg border border-[#ffffff10] max-w-sm mx-auto transform rotate-1 hover:rotate-0 transition-transform">
@@ -23,35 +24,46 @@ const WhatsAppCard = ({ item }: { item: any }) => (
   </div>
 );
 
-const VideoEmbedCard = ({ item }: { item: any }) => (
-  <div className="group relative rounded-lg md:rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl">
-    <div className="aspect-video w-full">
-      <iframe
-        src={item.videoSrc}
-        width="100%"
-        height="100%"
-        frameBorder="0"
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-        allowFullScreen
-        title={item.title}
-        className="w-full h-full"
-      ></iframe>
+const VideoEmbedCard = ({ item }: { item: any }) => {
+  // Extract video ID and platform from videoSrc
+  const getVideoData = (src: string) => {
+    if (src.includes('youtube.com') || src.includes('youtu.be')) {
+      const match = src.match(/(?:embed\/|v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+      return { platform: 'youtube' as const, videoId: match?.[1] || '' };
+    } else if (src.includes('vimeo.com')) {
+      const match = src.match(/video\/(\d+)/);
+      return { platform: 'vimeo' as const, videoId: match?.[1] || '' };
+    }
+    return { platform: 'youtube' as const, videoId: '' };
+  };
+
+  const { platform, videoId } = getVideoData(item.videoSrc);
+
+  return (
+    <div className="group relative rounded-lg md:rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl">
+      <div className="aspect-video w-full">
+        <VideoLite
+          videoId={videoId}
+          platform={platform}
+          title={item.title}
+        />
+      </div>
+      <div className="p-3 bg-roasell-card border-t border-white/5">
+        {item.resultValue && (
+          <div className="inline-block px-1.5 py-0.5 bg-green-500/20 text-green-400 text-[9px] md:text-[10px] font-bold rounded mb-1 border border-green-500/30">
+            {item.resultValue}
+          </div>
+        )}
+        <h4 className="text-white text-xs md:text-sm font-bold leading-tight flex items-center justify-between">
+          {item.title || item.name}
+          <span className="text-[9px] font-normal text-gray-500 uppercase tracking-widest border border-white/10 px-1 rounded">
+            {item.platform}
+          </span>
+        </h4>
+      </div>
     </div>
-    <div className="p-3 bg-roasell-card border-t border-white/5">
-      {item.resultValue && (
-        <div className="inline-block px-1.5 py-0.5 bg-green-500/20 text-green-400 text-[9px] md:text-[10px] font-bold rounded mb-1 border border-green-500/30">
-          {item.resultValue}
-        </div>
-      )}
-      <h4 className="text-white text-xs md:text-sm font-bold leading-tight flex items-center justify-between">
-        {item.title || item.name}
-        <span className="text-[9px] font-normal text-gray-500 uppercase tracking-widest border border-white/10 px-1 rounded">
-          {item.platform}
-        </span>
-      </h4>
-    </div>
-  </div>
-);
+  );
+};
 
 const ImageCard = ({ item }: { item: any }) => (
   <div className="group relative rounded-lg md:rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl h-full">

@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
+import VideoLite from '../ui/VideoLite';
 
 const Hero: React.FC = () => {
   const scrollToBooking = () => {
@@ -65,15 +66,11 @@ const Hero: React.FC = () => {
 
             {/* Video Iframe */}
             <div className="relative w-full aspect-video bg-black rounded-[1px] overflow-hidden z-10">
-              <iframe
-                src="https://player.vimeo.com/video/1118068530?badge=0&autopause=0&player_id=0&app_id=58479"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              <VideoLite
+                videoId="1118068530"
+                platform="vimeo"
                 title="Kurucu Tanıtım Videosu"
-                className="w-full h-full"
-              ></iframe>
+              />
             </div>
           </div>
 
