@@ -84,9 +84,10 @@
       }
       function getParam(k) { return new URLSearchParams(location.search).get(k); }
       function uuidv4() {
-        return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c =>
-          (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        );
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
       }
       function computeFBC() {
         const c = getCookie('_fbc'); if (c) return c;
@@ -95,7 +96,6 @@
       }
       function computeFBP() { return getCookie('_fbp') || null; }
 
-      // Tek sefer guard
       if (window.__PV_SENT__) return; window.__PV_SENT__ = true;
 
       const event_id = uuidv4();
@@ -104,48 +104,34 @@
       const fbc = computeFBC() || '';
       const user_agent = navigator.userAgent || '';
 
-      // 1) Browser Pixel - Standart event + eventID (dedup için kritik)
+      // 1) Browser Pixel
       try { fbq('track', EVENT, {}, { eventID: event_id }); } catch (e) { }
 
-      // 2) Server’a image GET (CORS yok)
-      (function imageSend() {
-        const q = new URLSearchParams({
-          transport: 'img',
+      // 2) Robust Webhook Send
+      const sendTracking = () => {
+        const data = {
           event_name: EVENT,
           event_id,
-          event_time: String(event_time),
-          fbp, fbc,
+          event_time,
+          fbp,
+          fbc,
           ua: user_agent,
-          url: location.href,
+          url: location.href.split('?')[0], // Parametreleri temizle (n8n dostu)
           ref: document.referrer || ''
-        }).toString();
+        };
+
+        // IMAGE (GET) - CORS'u tamamen bypass eder
         const img = new Image();
-        img.src = WEBHOOK + '?' + q;
-      })();
+        img.src = WEBHOOK + '?' + new URLSearchParams(data).toString();
 
-      // 3) sendBeacon (varsa) — ekstra garanti
-      (function beaconSend() {
-        if (!navigator.sendBeacon) return;
-        try {
-          const payload = {
-            transport: 'beacon',
-            event_name: EVENT,
-            event_id,
-            event_time,
-            fbp, fbc, user_agent,
-            ip_address: null,
-            page: { url: location.href, referrer: document.referrer }
-          };
-          // text/plain kullanarak preflight (CORS) engelinden kaçınıyoruz
-          navigator.sendBeacon(
-            WEBHOOK,
-            new Blob([JSON.stringify(payload)], { type: 'text/plain' })
-          );
-        } catch (e) { }
-      })();
+        // BEACON (POST) - Arka planda garanti gönderim
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(WEBHOOK, new Blob([JSON.stringify(data)], { type: 'text/plain' }));
+        }
+      };
 
-      // Debug
-      console.table({ event_id, event_time, fbp, fbc, user_agent, url: location.href });
+      sendTracking();
+      console.log('Tracking sent:', event_id);
     })();
   </script>
   <!-- End Facebook Pixel Code -->

@@ -22,9 +22,10 @@ const TebriklerPage: React.FC = () => {
             }
             function getParam(k: string) { return new URLSearchParams(location.search).get(k); }
             function uuidv4() {
-                return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c: any) =>
-                    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-                );
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
             }
             function computeFBC() {
                 const c = getCookie('_fbc'); if (c) return c;
@@ -33,20 +34,28 @@ const TebriklerPage: React.FC = () => {
             }
             function computeFBP() { return getCookie('_fbp') || null; }
 
-            // === TEK SEFER GUARD (event'e özgü) ===
+            // === TEK SEFER GUARD ===
             // @ts-ignore
             if (window[GUARD_KEY]) return;
             // @ts-ignore
             window[GUARD_KEY] = true;
 
-            // === PAYLOAD HAZIRLA ===
             const event_id = uuidv4();
             const event_time = Math.floor(Date.now() / 1000);
-            const fbp = computeFBP();
-            const fbc = computeFBC();
-            const user_agent = navigator.userAgent || null;
+            const user_agent = navigator.userAgent || '';
 
-            // 1) PIXEL (dedup için eventID aynı)
+            const data = {
+                event_name: EVENT,
+                event_id,
+                event_time,
+                fbp: computeFBP() || '',
+                fbc: computeFBC() || '',
+                ua: user_agent,
+                url: location.href.split('?')[0],
+                ref: document.referrer || ''
+            };
+
+            // 1) PIXEL
             // @ts-ignore
             if (typeof fbq === 'function') {
                 try {
@@ -55,45 +64,16 @@ const TebriklerPage: React.FC = () => {
                 } catch (e) { }
             }
 
-            // 2) IMG GET (CORS'suz, garanti)
-            const queryData = {
-                transport: 'img',
-                event_name: EVENT,
-                event_id,
-                event_time: String(event_time),
-                fbp: fbp || '',
-                fbc: fbc || '',
-                ua: user_agent || '',
-                url: location.href,
-                ref: document.referrer || ''
-            };
+            // 2) IMAGE (GET) - n8n Webhook dostu
+            const img = new Image();
+            img.src = WEBHOOK + '?' + new URLSearchParams(data as any).toString();
 
-            (function imageSend() {
-                const q = new URLSearchParams(queryData).toString();
-                const img = new Image();
-                img.src = WEBHOOK + '?' + q;
-            })();
+            // 3) BEACON (POST)
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(WEBHOOK, new Blob([JSON.stringify(data)], { type: 'text/plain' }));
+            }
 
-            // 3) sendBeacon (varsa, ek log)
-            (function beaconSend() {
-                if (!navigator.sendBeacon) return;
-                try {
-                    const payload = {
-                        ...queryData,
-                        transport: 'beacon',
-                        ip_address: null,
-                    };
-                    // Hem URL'e hem gövdeye ekliyoruz (maksimum uyumluluk)
-                    const q = new URLSearchParams({ event_id, event_name: EVENT }).toString();
-                    navigator.sendBeacon(
-                        WEBHOOK + '?' + q,
-                        new Blob([JSON.stringify(payload)], { type: 'text/plain' })
-                    );
-                } catch (e) { }
-            })();
-
-            // DEBUG
-            console.table({ event_name: EVENT, event_id, event_time, fbp, fbc, user_agent, url: location.href });
+            console.log('Meeting tracking sent:', event_id);
         })();
     }, []);
 
