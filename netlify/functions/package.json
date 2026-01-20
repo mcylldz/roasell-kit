@@ -1,0 +1,6 @@
+{
+    "name": "roasell-functions",
+    "dependencies": {
+        "stripe": "^20.2.0"
+    }
+}
