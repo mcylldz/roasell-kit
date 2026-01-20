@@ -9,11 +9,11 @@ export default {
         extend: {
             colors: {
                 roasell: {
-                    black: '#010101',
+                    black: '#080d23',
                     card: '#0a0a0a',
-                    gold: '#f2de02',
-                    goldLight: '#ffeb3b',
-                    goldDark: '#bfae02',
+                    gold: '#52b2ce',
+                    goldLight: '#65d0eb',
+                    goldDark: '#357a94',
                     gray: '#888888',
                     border: '#2a2a2a'
                 }

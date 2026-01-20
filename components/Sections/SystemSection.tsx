@@ -89,17 +89,17 @@ const SystemSection: React.FC = () => {
               </div>
               <h2 className="text-2xl md:text-4xl font-bold font-display mb-3 text-white leading-tight">
                 Başarısı Kanıtlanmış <br />
-                <span className="text-gradient-gold">Harita</span>
+                <span className="text-roasell-gold">Harita</span>
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
-                RoaSell'de hem senelerdir kendi markalarımızla oluşturduğumuz veri havuzuna ilk günden erişebilecek, hem de bizim markalarımızın mutfağını göreceksiniz.
+                RoaSell Kit'de sıfır noktasından mağazanızı reklama çıkana kadar olan süreçteki bütün adımları tüm detaylarıyla deneyimleyecek, öğrenirken uygulayarak tek bir kaynağa bağlı kalarak ilk satışınızı alabileceksiniz.
               </p>
 
               <div className="space-y-2 md:space-y-3">
                 {[
-                  "Gerçek zamanlı veri havuzuna erişim",
-                  "Test edilmiş ürün stratejileri",
-                  "Sıfır hata ile ilerleyen operasyonlar"
+                  "Defalarca tekrarlanan ve test edilen adımlar",
+                  "Kanıtlanmış yol haritası",
+                  "Fark yaratacak ek içerikler"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2 md:gap-3 text-gray-300 text-xs md:text-base">
                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-roasell-gold/20 flex items-center justify-center text-roasell-gold shrink-0">
@@ -122,11 +122,15 @@ const SystemSection: React.FC = () => {
             >
               {/* Main Dashboard Card */}
               <div className="bg-roasell-card border border-white/10 rounded-lg md:rounded-xl p-1 md:p-2 shadow-2xl relative z-10 overflow-hidden">
-                <img
-                  src="/assets/roasell-dashboard-final.jpg"
-                  alt="RoaSell Dashboard"
-                  className="w-full h-auto rounded-lg md:rounded-lg"
-                />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto rounded-lg md:rounded-lg object-cover"
+                >
+                  <source src="/assets/V1.mp4" type="video/mp4" />
+                </video>
               </div>
 
               {/* Background Grid Decoration */}

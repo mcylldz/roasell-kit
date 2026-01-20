@@ -33,8 +33,8 @@ const StatsChart: React.FC = () => {
                     <AreaChart data={data}>
                         <defs>
                             <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#F5A623" stopOpacity={0.3} />
-                                <stop offset="95%" stopColor="#F5A623" stopOpacity={0} />
+                                <stop offset="5%" stopColor="#52b2ce" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="#52b2ce" stopOpacity={0} />
                             </linearGradient>
                         </defs>
                         <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
@@ -42,9 +42,9 @@ const StatsChart: React.FC = () => {
                         <YAxis stroke="#666" axisLine={false} tickLine={false} tickFormatter={(value) => `${value / 1000}k`} fontSize={10} />
                         <Tooltip
                             contentStyle={{ backgroundColor: '#161616', borderColor: '#333', color: '#fff', fontSize: '11px', padding: '5px' }}
-                            itemStyle={{ color: '#F5A623' }}
+                            itemStyle={{ color: '#52b2ce' }}
                         />
-                        <Area type="monotone" dataKey="sales" stroke="#F5A623" strokeWidth={2} fillOpacity={1} fill="url(#colorSales)" />
+                        <Area type="monotone" dataKey="sales" stroke="#52b2ce" strokeWidth={2} fillOpacity={1} fill="url(#colorSales)" />
                     </AreaChart>
                 </ResponsiveContainer>
             </div>

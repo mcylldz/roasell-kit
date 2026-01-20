@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 
 interface VideoLiteProps {
@@ -6,10 +6,23 @@ interface VideoLiteProps {
     platform: 'youtube' | 'vimeo';
     title?: string;
     className?: string;
+    autoPlay?: boolean;
+    isLocked?: boolean;
 }
 
-const VideoLite: React.FC<VideoLiteProps> = ({ videoId, platform, title = 'Video', className = '' }) => {
-    const [isLoaded, setIsLoaded] = useState(false);
+const VideoLite: React.FC<VideoLiteProps> = ({
+    videoId,
+    platform,
+    title = 'Video',
+    className = '',
+    autoPlay = false,
+    isLocked = false
+}) => {
+    const [isLoaded, setIsLoaded] = useState(autoPlay);
+
+    useEffect(() => {
+        if (autoPlay) setIsLoaded(true);
+    }, [autoPlay]);
 
     const thumbnailUrl = platform === 'youtube'
         ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
@@ -17,7 +30,7 @@ const VideoLite: React.FC<VideoLiteProps> = ({ videoId, platform, title = 'Video
 
     const embedUrl = platform === 'youtube'
         ? `https://www.youtube.com/embed/${videoId}?autoplay=1`
-        : `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1`;
+        : `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0`;
 
     if (isLoaded) {
         return (
@@ -30,7 +43,7 @@ const VideoLite: React.FC<VideoLiteProps> = ({ videoId, platform, title = 'Video
                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                     allowFullScreen
                     title={title}
-                    className="w-full h-full"
+                    className={`w-full h-full ${isLocked ? 'pointer-events-none' : ''}`}
                 />
             </div>
         );
@@ -54,8 +67,8 @@ const VideoLite: React.FC<VideoLiteProps> = ({ videoId, platform, title = 'Video
 
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-8 h-8 md:w-10 md:h-10 text-white fill-white ml-1" />
+                <div className="w-10 h-10 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Play className="w-5 h-5 md:w-8 md:h-8 text-white fill-white ml-1" />
                 </div>
             </div>
         </div>

@@ -13,8 +13,8 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToBooking = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToOffer = () => {
+    document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -24,7 +24,7 @@ const Header: React.FC = () => {
         : 'bg-transparent border-transparent py-4'
         }`}
     >
-      <div className="container mx-auto px-4 md:px-8 relative flex items-center justify-between h-12">
+      <div className="container mx-auto px-4 md:px-8 relative flex items-center justify-between h-14">
 
         {/* Left Side - Language (Hidden on mobile to keep focus on logo) */}
         <div className="hidden md:flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity cursor-pointer">
@@ -35,19 +35,19 @@ const Header: React.FC = () => {
         {/* Logo - Absolutely Centered */}
         <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer z-50"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
         >
           <img
             src="/assets/logo.png"
             alt="RoaSell"
-            className="h-6 md:h-8 w-auto object-contain"
+            className="h-12 md:h-16 w-auto object-contain"
           />
         </div>
 
         {/* Right Side - Button (Hidden on mobile) */}
         <div className="hidden md:block">
-          <Button variant="primary" size="sm" onClick={scrollToBooking} className="text-xs px-5">
-            ANALIZ BAŞVURU
+          <Button variant="primary" size="sm" onClick={scrollToOffer} className="text-xs px-5">
+            ANALİZ BAŞVURU
           </Button>
         </div>
       </div>

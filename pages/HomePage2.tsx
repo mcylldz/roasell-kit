@@ -11,12 +11,12 @@ import Testimonials from '../components/Sections/Testimonials';
 import OfferSection from '../components/Sections/OfferSection';
 import Footer from '../components/Sections/Footer';
 
-const HomePage: React.FC = () => {
+const HomePage2: React.FC = () => {
     return (
         <div className="bg-roasell-black min-h-screen text-white selection:bg-roasell-gold selection:text-black">
             <Header />
             <main>
-                <Hero variant="A" />
+                <Hero variant="B" />
 
                 <Credibility />
                 <StatsSection />
@@ -35,4 +35,4 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default HomePage;
+export default HomePage2;

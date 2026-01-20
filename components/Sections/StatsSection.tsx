@@ -7,7 +7,7 @@ const LazyChart = lazy(() => import('./StatsChart'));
 
 const StatsSection: React.FC = () => {
   return (
-    <section className="py-8 md:py-12 bg-roasell-card border-t border-white/5 relative">
+    <section className="py-8 md:py-12 bg-roasell-black border-t border-white/5 relative">
       <div className="container mx-auto px-4">
 
         {/* Header - Compact */}

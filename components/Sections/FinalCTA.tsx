@@ -10,7 +10,7 @@ const FinalCTA: React.FC = () => {
   return (
     <section className="py-8 md:py-16 relative overflow-hidden">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-roasell-black via-[#1a1500] to-roasell-black" />
+      <div className="absolute inset-0 bg-roasell-black" />
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         <div className="max-w-2xl mx-auto">
