@@ -3,7 +3,7 @@
   publish = "dist"
 
 [functions]
-  node_bundle = true
+  external_node_modules = ["stripe"]
 
 [[redirects]]
   from = "/*"
