@@ -137,7 +137,7 @@ const TebriklerPage: React.FC = () => {
         <div className="min-h-screen bg-roasell-black text-white flex flex-col">
             <Header />
 
-            <div className="flex-1 flex items-center justify-center p-4">
+            <div className="flex-1 flex items-center justify-center p-4 pt-24 md:pt-32">
                 <div className="max-w-2xl w-full text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
