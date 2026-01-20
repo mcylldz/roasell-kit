@@ -115,14 +115,19 @@ const TebriklerPage: React.FC = () => {
                 } catch (e) { }
             }
 
-            // 2) IMAGE (GET) - n8n Webhook
+            // 2) IMAGE (GET) - Reliable Fallback
             const img = new Image();
             img.src = WEBHOOK + '?' + new URLSearchParams(data as any).toString();
 
-            // 3) BEACON (POST/JSON)
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon(WEBHOOK, new Blob([JSON.stringify(data)], { type: 'application/json' }));
-            }
+            // 3) FETCH (POST) - CORS friendly 'no-cors'
+            try {
+                fetch(WEBHOOK, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify(data)
+                });
+            } catch (e) { }
 
             console.log('Purchase tracking sent with full context:', event_id);
         })();
@@ -134,17 +139,6 @@ const TebriklerPage: React.FC = () => {
 
             <div className="flex-1 flex items-center justify-center p-4">
                 <div className="max-w-2xl w-full text-center">
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                        className="mb-8 flex justify-center"
-                    >
-                        <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center border-2 border-green-500/30">
-                            <CheckCircle className="w-12 h-12 text-green-500" />
-                        </div>
-                    </motion.div>
-
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
