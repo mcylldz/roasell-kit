@@ -144,7 +144,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
 
             {/* Unmute Instruction (Variant B only) */}
             {isLocked && (
-              <div className="absolute top-[-30px] md:top-[-40px] left-0 right-0 text-center">
+              <div className="absolute top-[-45px] md:top-[-60px] left-0 right-0 text-center">
                 <p className="text-white bg-black/40 backdrop-blur-sm px-3 py-1 rounded inline-block text-[10px] md:text-xs font-medium border border-white/10 uppercase tracking-tighter">
                   Eğer sesi duymuyorsanız <span className="text-roasell-gold font-bold">"UNMUTE"</span> butonuna basın.
                 </p>
