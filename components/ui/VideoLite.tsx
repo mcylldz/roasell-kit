@@ -43,7 +43,7 @@ const VideoLite: React.FC<VideoLiteProps> = ({
                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                     allowFullScreen
                     title={title}
-                    className={`w-full h-full ${isLocked ? 'pointer-events-none' : ''}`}
+                    className="w-full h-full"
                 />
             </div>
         );

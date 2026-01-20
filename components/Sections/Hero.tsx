@@ -142,6 +142,15 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
               SATIN ALMADAN ÖNCE İZLE
             </div>
 
+            {/* Unmute Instruction (Variant B only) */}
+            {isLocked && (
+              <div className="absolute top-[-30px] md:top-[-40px] left-0 right-0 text-center">
+                <p className="text-white bg-black/40 backdrop-blur-sm px-3 py-1 rounded inline-block text-[10px] md:text-xs font-medium border border-white/10 uppercase tracking-tighter">
+                  Eğer sesi duymuyorsanız <span className="text-roasell-gold font-bold">"UNMUTE"</span> butonuna basın.
+                </p>
+              </div>
+            )}
+
             <div className="relative w-full aspect-video bg-black rounded-[1px] overflow-hidden z-10">
               <VideoLite
                 videoId="1156517904"
@@ -158,32 +167,16 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onClick={() => {
-                      setIsCountingDown(false);
-                      setVideoStarted(true);
-                    }}
-                    className="absolute inset-0 flex items-center justify-center bg-black/80 z-30 cursor-pointer group"
+                    className="absolute inset-0 flex items-center justify-center bg-black/60 z-30"
                   >
-                    <div className="flex flex-col items-center">
-                      <div className="relative mb-6">
-                        <motion.div
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ repeat: Infinity, duration: 2 }}
-                          className="absolute inset-0 bg-roasell-gold/20 rounded-full blur-xl"
-                        />
-                        <div className="w-16 h-16 md:w-20 md:h-20 bg-roasell-gold rounded-full flex items-center justify-center shadow-2xl relative">
-                          <div className="text-white text-3xl md:text-4xl font-bold">{preCountdown}</div>
-                        </div>
-                      </div>
-
-                      <div className="bg-roasell-gold text-white px-6 py-3 rounded-full font-bold text-sm md:text-base animate-bounce shadow-xl">
-                        VİDEOYU SESLİ BAŞLAT
-                      </div>
-
-                      <span className="text-white/40 text-[10px] md:text-xs mt-4 uppercase tracking-[0.2em] font-medium text-center px-4">
-                        TIKLAYARAK OTOMATİK BAŞLATABİLİRSİNİZ
-                      </span>
-                    </div>
+                    <motion.span
+                      key={preCountdown}
+                      initial={{ scale: 2, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-white text-7xl md:text-9xl font-bold"
+                    >
+                      {preCountdown}
+                    </motion.span>
                   </motion.div>
                 )}
               </AnimatePresence>
