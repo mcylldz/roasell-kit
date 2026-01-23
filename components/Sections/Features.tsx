@@ -12,7 +12,7 @@ const Features: React.FC = () => {
                             Neden <span className="text-roasell-gold">RoaSell Kit?</span>
                         </h2>
                         <p className="text-gray-400 text-sm md:text-lg leading-relaxed">
-                            Roasell Kit e-ticareti tek kaynaktan adım adım başlamana yardımcı olur, sana aksiyon aldırır, hiçbir dış kaynağa ihtiyaç kurmadan ilk siparişine kadar tüm süreçte seni yönlendirir. Kendini denemenin en maliyetsiz yoludur.
+                            RoaSell Kit sana 28 gün boyunca her gün ne yapacağını söyler. Tek kaynaktan ilerlersin, adımları uygularsın ve mağazanı satışa çıkarırsın.
                         </p>
                     </div>
 

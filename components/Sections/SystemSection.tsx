@@ -88,18 +88,18 @@ const SystemSection: React.FC = () => {
                 <span>Kanıtlanmış Altyapı</span>
               </div>
               <h2 className="text-2xl md:text-4xl font-bold font-display mb-3 text-white leading-tight">
-                Başarısı Kanıtlanmış <br />
-                <span className="text-roasell-gold">Harita</span>
+                Sıfırdan Satışa <br />
+                <span className="text-roasell-gold">Giden Yol</span>
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
-                RoaSell Kit'de sıfır noktasından mağazanızı reklama çıkana kadar olan süreçteki bütün adımları tüm detaylarıyla deneyimleyecek, öğrenirken uygulayarak tek bir kaynağa bağlı kalarak ilk satışınızı alabileceksiniz.
+                Roasell Kit, sıfırdan başlayıp mağazanı reklama çıkarana kadar gereken her şeyi gün gün önüne koyar. Tek bir kaynaktan ilerlersin: uygularsın, kurarsın, satışa çıkarsın.
               </p>
 
               <div className="space-y-2 md:space-y-3">
                 {[
-                  "Defalarca tekrarlanan ve test edilen adımlar",
-                  "Kanıtlanmış yol haritası",
-                  "Fark yaratacak ek içerikler"
+                  "Gün gün görevler",
+                  "Test edilmiş adımlar",
+                  "499$ değerinde bonus içerikler"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2 md:gap-3 text-gray-300 text-xs md:text-base">
                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-roasell-gold/20 flex items-center justify-center text-roasell-gold shrink-0">

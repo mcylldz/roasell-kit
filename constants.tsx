@@ -27,7 +27,7 @@ export const STATS: StatItem[] = [
 export const FEATURES: FeatureItem[] = [
   {
     title: 'Ürün Araştırması',
-    description: 'Roasell’in özel ürün araştırma methodları ile ilk ürününüzü bulun.',
+    description: 'Kazanan ürünün mantığını öğrenin ve ilk ürününü bulun.',
     icon: <Search className="w-6 h-6 text-roasell-gold" />
   },
   {
@@ -51,8 +51,8 @@ export const FEATURES: FeatureItem[] = [
     icon: <Share2 className="w-6 h-6 text-roasell-gold" />
   },
   {
-    title: 'Pazarlama',
-    description: 'Roasell’in özel reklam stratejileri ile ürünlerinizi test edin, bilimsel methodlara erişin.',
+    title: 'Pazarlama - Test Et & Ölçekle',
+    description: 'Para yakmadan reklam açın: test et, analiz et, ölçekle.',
     icon: <Megaphone className="w-6 h-6 text-roasell-gold" />
   }
 ];

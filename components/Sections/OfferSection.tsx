@@ -179,8 +179,8 @@ const OfferSection: React.FC = () => {
                 {/* HEADLINE - Funnel Style Centered */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-900 mb-4 leading-tight">
-                        Kendini Denemeye <br />
-                        <span className="text-roasell-gold">Hazır mısın?</span>
+                        Her gün ne yapacağını söyleyen <br />
+                        <span className="text-roasell-gold">bir sistem ister misin?</span>
                     </h2>
                     <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
                         Bahane sayılabilecek herşeyin çözümünü ttek bir pakette topladık, artık tek yapman gereken Roasell Kit'e kayıt olup süreci başlatmak olacak.

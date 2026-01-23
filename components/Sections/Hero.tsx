@@ -106,7 +106,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           className="mb-0.5 md:mb-1"
         >
           <span className="text-[10px] md:text-xs font-semibold text-gray-400 tracking-widest uppercase">
-            Sıfırdan Marka Kurmak İsteyenler;
+            “Ne yapacağım ? Nereden başlayacağım ?” Diyenler
           </span>
         </motion.div>
 
@@ -117,7 +117,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
         >
-          Kendini Denemeye <br /> <span className="text-roasell-gold font-extrabold">HAZIR MISIN?</span>
+          Her gün ne yapacağını söyleyen <br /> <span className="text-roasell-gold font-extrabold">bir sistem ister misin?</span>
         </motion.h1>
 
         {/* Description */}
