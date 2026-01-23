@@ -106,6 +106,11 @@ const CheckoutForm = () => {
             >
                 {isLoading ? "İşleniyor..." : "SİPARİŞİ TAMAMLA - $97"}
             </Button>
+            <div className="mt-2 text-center animate-pulse">
+                <span className="bg-red-50 text-red-600 px-3 py-1.5 rounded-full text-xs md:text-sm font-bold border border-red-100 shadow-sm inline-flex items-center gap-1.5">
+                    🎁 $499'lık Bonus Paket Hediye!
+                </span>
+            </div>
             <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mt-2">
                 <Lock className="w-3 h-3" />
                 <span>256-bit SSL ile güvenli ödeme</span>
@@ -256,14 +261,17 @@ const OfferSection: React.FC = () => {
                             {/* Accordions - Immediately below price */}
                             <div className="space-y-4 mb-8">
                                 <AccordionItem title="28 Günlük Challenge" defaultOpen={false}>
-                                    <ul className="space-y-3">
-                                        {PRODUCTS_INCLUDED.map((item, idx) => (
-                                            <li key={idx} className="text-gray-600 text-sm md:text-base flex items-start gap-3">
-                                                <CheckCircle2 className="w-5 h-5 text-roasell-gold shrink-0 mt-0.5" />
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                                        <p>
+                                            Şunu net söyleyelim: Dropshipping’i izleyerek öğrenemezsin. İzlersin, gaza gelirsin, 2 gün sonra yine “ne yapacağım?” diye kalırsın.
+                                        </p>
+                                        <p>
+                                            RoaSell Kit ise bunu bitirir. Çünkü 28 gün boyunca sana sadece bilgi vermez; seni yönlendirir. Gün gün görevleri uygularsın, kontrol listeleriyle ilerlersin, doğru sırayla mağazanı kurar ve reklama çıkarsın.
+                                        </p>
+                                        <p>
+                                            Bu kit, kafası karışık insanlar için netlik üretir. Takıldığın noktada dönüp tekrar bakarsın, rastgele deneme yapmazsın. Amacımız motivasyon değil; sonuç.
+                                        </p>
+                                    </div>
                                 </AccordionItem>
 
                                 <AccordionItem title="499$ Değerindeki Bonus İçerikler HEDİYE!" titleClassName="text-red-600 text-lg" defaultOpen={false}>
@@ -318,6 +326,11 @@ const OfferSection: React.FC = () => {
                                     <Button type="submit" variant="primary" size="lg" className="w-full font-bold py-4 mt-4 shadow-lg shadow-roasell-gold/20 text-white" withArrow>
                                         ÖDEMEYE GEÇ →
                                     </Button>
+                                    <div className="mt-2 text-center animate-pulse">
+                                        <span className="bg-red-50 text-red-600 px-3 py-1.5 rounded-full text-xs md:text-sm font-bold border border-red-100 shadow-sm inline-flex items-center gap-1.5">
+                                            🎁 $499'lık Bonus Paket Hediye!
+                                        </span>
+                                    </div>
                                     <p className="text-center text-xs text-gray-400 mt-3">Bilgileriniz 256-bit SSL sertifikası ile korunmaktadır.</p>
                                 </form>
                             ) : (

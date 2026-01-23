@@ -46,9 +46,14 @@ const Header: React.FC = () => {
 
         {/* Right Side - Button (Hidden on mobile) */}
         <div className="hidden md:block">
-          <Button variant="primary" size="sm" onClick={scrollToOffer} className="text-xs px-5">
-            ANALİZ BAŞVURU
-          </Button>
+          <div className="flex flex-col items-center">
+            <Button variant="primary" size="sm" onClick={scrollToOffer} className="text-xs px-5">
+              ANALİZ BAŞVURU
+            </Button>
+            <div className="mt-1 flex items-center gap-1 text-[8px] font-bold text-red-500 animate-pulse whitespace-nowrap">
+              🎁 $499'lık Bonus Hediye!
+            </div>
+          </div>
         </div>
       </div>
     </header >

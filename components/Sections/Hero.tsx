@@ -219,6 +219,11 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
               <Button variant="primary" size="lg" withArrow onClick={scrollToOffer} className="w-full shadow-roasell-gold/20 py-4 font-bold uppercase">
                 ŞİMDİ KATIL
               </Button>
+              <div className="mt-2 text-center animate-pulse">
+                <span className="bg-red-500/10 text-red-500 px-3 py-1.5 rounded-full text-xs md:text-sm font-bold border border-red-500/20 shadow-sm inline-flex items-center gap-1.5 whitespace-nowrap">
+                  🎁 $499'lık Bonus Paket Hediye!
+                </span>
+              </div>
             </div>
           </div>
         )}
