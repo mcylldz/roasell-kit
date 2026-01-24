@@ -143,6 +143,21 @@ const OfferSection: React.FC = () => {
         e.preventDefault();
 
         try {
+            // --- LEAD TRACKING WEBHOOK ---
+            const leadData = {
+                ...customerInfo,
+                variant: localStorage.getItem('ab_variant') || 'A',
+                event_name: 'Lead',
+                url: window.location.href.split('?')[0]
+            };
+
+            fetch('https://dtt1z7t3.rcsrv.com/webhook/kitlead', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(leadData)
+            }).catch(err => console.error("Lead webhook error:", err));
+
             // Save info for the success page webhook
             localStorage.setItem('last_purchase_info', JSON.stringify(customerInfo));
 
