@@ -143,20 +143,31 @@ const OfferSection: React.FC = () => {
         e.preventDefault();
 
         try {
-            // --- LEAD TRACKING WEBHOOK ---
-            const leadData = {
-                ...customerInfo,
-                variant: localStorage.getItem('ab_variant') || 'A',
-                event_name: 'Lead',
-                url: window.location.href.split('?')[0]
-            };
+            // --- LEAD TRACKING WEBHOOK (Optimized) ---
+            (function () {
+                const leadWebhook = 'https://dtt1z7t3.rcsrv.com/webhook/kitlead';
+                const leadData = {
+                    ...customerInfo,
+                    variant: localStorage.getItem('ab_variant') || 'A',
+                    event_name: 'Lead',
+                    event_id: crypto.randomUUID(),
+                    event_time: Math.floor(Date.now() / 1000),
+                    url: window.location.href.split('?')[0],
+                    ua: navigator.userAgent
+                };
 
-            fetch('https://dtt1z7t3.rcsrv.com/webhook/kitlead', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(leadData)
-            }).catch(err => console.error("Lead webhook error:", err));
+                // 1) IMAGE (GET) - Most reliable for webhooks
+                const img = new Image();
+                img.src = leadWebhook + '?' + new URLSearchParams(leadData as any).toString();
+
+                // 2) FETCH (POST) - CORS friendly
+                fetch(leadWebhook, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify(leadData)
+                }).catch(() => { });
+            })();
 
             // Save info for the success page webhook
             localStorage.setItem('last_purchase_info', JSON.stringify(customerInfo));
