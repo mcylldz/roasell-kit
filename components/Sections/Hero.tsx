@@ -107,7 +107,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           className="mb-0.5 md:mb-1"
         >
           <span className="text-[10px] md:text-xs font-semibold text-gray-400 tracking-widest uppercase">
-            “Ne yapacağım ? Nereden başlayacağım ?” Diyenler
+            “NE YAPACAĞIM ? NEREDEN BAŞLAYACAĞIM ?” DIYENLER iÇİN;
           </span>
         </motion.div>
 
