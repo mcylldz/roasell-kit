@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TESTIMONIALS } from '../../constants';
 import { motion } from 'framer-motion';
 
@@ -11,15 +11,32 @@ const getVimeoId = (src: string): string => {
 
 const VideoThumbCard = ({ item }: { item: any }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoId = getVimeoId(item.videoSrc);
-  // Bump `v` when you update the Vimeo thumbnail and the carousel still shows the old one.
-  const thumbUrl = `https://vumbnail.com/${videoId}.jpg?v=2`;
   const label = item.title || item.name || 'Tecrübe';
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      entries => {
+        if (entries[0]?.isIntersecting) {
+          setIsVisible(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <div
+      ref={containerRef}
       className="relative rounded-xl overflow-hidden bg-black border border-white/10 shadow-xl w-full"
-      style={{ position: 'relative', paddingTop: VERTICAL_PADDING_TOP }}
+      style={{ paddingTop: VERTICAL_PADDING_TOP }}
     >
       {isPlaying ? (
         <iframe
@@ -31,40 +48,53 @@ const VideoThumbCard = ({ item }: { item: any }) => {
           title={label}
         />
       ) : (
-        <button
-          type="button"
-          onClick={() => setIsPlaying(true)}
-          aria-label={`${label} videosunu oynat`}
-          className="group absolute inset-0 cursor-pointer block w-full h-full p-0 border-0 bg-transparent"
-        >
-          <img
-            src={thumbUrl}
-            alt={label}
-            className="absolute inset-0 w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 md:w-16 md:h-16 bg-roasell-black rounded-full flex items-center justify-center shadow-2xl border border-white/25 group-hover:scale-110 transition-transform">
-              <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1" />
-            </div>
-          </div>
-          {(item.title || item.name || item.resultValue) && (
-            <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black to-transparent text-left">
-              <div className="flex flex-col gap-1">
-                {item.resultValue && (
-                  <span className="text-[8px] md:text-[9px] font-bold text-green-400 bg-green-500/20 px-1.5 py-0.5 rounded border border-green-500/30 self-start italic">
-                    {item.resultValue}
-                  </span>
-                )}
-                {(item.title || item.name) && (
-                  <h4 className="text-white text-[10px] md:text-xs font-bold truncate leading-tight">
-                    {item.title || item.name}
-                  </h4>
-                )}
+        <>
+          {isVisible && (
+            <iframe
+              src={`https://player.vimeo.com/video/${videoId}?background=1&muted=1`}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
+              }}
+              frameBorder={0}
+              allow="autoplay; fullscreen; picture-in-picture"
+              title={`${label} önizleme`}
+              tabIndex={-1}
+            />
+          )}
+          <button
+            type="button"
+            onClick={() => setIsPlaying(true)}
+            aria-label={`${label} videosunu oynat`}
+            className="group absolute inset-0 cursor-pointer block w-full h-full p-0 border-0 bg-transparent"
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-roasell-black rounded-full flex items-center justify-center shadow-2xl border border-white/25 group-hover:scale-110 transition-transform">
+                <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1" />
               </div>
             </div>
-          )}
-        </button>
+            {(item.title || item.name || item.resultValue) && (
+              <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black to-transparent text-left">
+                <div className="flex flex-col gap-1">
+                  {item.resultValue && (
+                    <span className="text-[8px] md:text-[9px] font-bold text-green-400 bg-green-500/20 px-1.5 py-0.5 rounded border border-green-500/30 self-start italic">
+                      {item.resultValue}
+                    </span>
+                  )}
+                  {(item.title || item.name) && (
+                    <h4 className="text-white text-[10px] md:text-xs font-bold truncate leading-tight">
+                      {item.title || item.name}
+                    </h4>
+                  )}
+                </div>
+              </div>
+            )}
+          </button>
+        </>
       )}
     </div>
   );
