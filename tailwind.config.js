@@ -27,6 +27,7 @@ export default {
                 'float': 'float 6s ease-in-out infinite',
                 'float-delayed': 'float 6s ease-in-out 3s infinite',
                 'shimmer': 'shimmer 2.5s linear infinite',
+                'flash': 'flash 1.2s ease-in-out infinite',
             },
             keyframes: {
                 float: {
@@ -36,6 +37,10 @@ export default {
                 shimmer: {
                     '0%': { backgroundPosition: '-200% 0' },
                     '100%': { backgroundPosition: '200% 0' },
+                },
+                flash: {
+                    '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                    '50%': { opacity: '0.55', transform: 'scale(1.04)' },
                 }
             }
         }
