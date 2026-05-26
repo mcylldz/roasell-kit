@@ -83,12 +83,9 @@ const FaqSection: React.FC = () => {
             <HelpCircle className="w-3.5 h-3.5" />
             SSS
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display text-white leading-tight mb-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display text-white leading-tight">
             Herkesin Aklına Gelen <span className="text-roasell-gold">Sorular</span>
           </h2>
-          <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto">
-            Aklındaki soruların büyük çoğunluğunun cevabını burada bulacaksın.
-          </p>
         </div>
 
         <div className="space-y-3">
