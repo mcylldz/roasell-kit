@@ -10,6 +10,7 @@ import ProgramFlow from '../components/Sections/ProgramFlow';
 import Testimonials from '../components/Sections/Testimonials';
 import OfferSection from '../components/Sections/OfferSection';
 import Footer from '../components/Sections/Footer';
+import PromoModal from '../components/ui/PromoModal';
 
 const HomePage: React.FC = () => {
     return (
@@ -31,6 +32,7 @@ const HomePage: React.FC = () => {
                 <OfferSection />
             </main>
             <Footer />
+            <PromoModal />
         </div>
     );
 };
