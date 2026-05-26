@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 /* Custom styles ported from index.html */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: #080d23;
   color: #ffffff;
