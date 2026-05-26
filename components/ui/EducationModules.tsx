@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Play } from 'lucide-react';
+import { Clock, Play, ArrowUpRight } from 'lucide-react';
 
 const MODULES: { title: string; duration: string }[] = [
   { title: 'Temeller', duration: '1 Saat 5 Dakika' },
@@ -40,6 +40,15 @@ const EducationModules: React.FC = () => {
       <div className="text-right text-roasell-gold font-bold text-xs md:text-sm mt-3 px-1">
         Toplam: {TOTAL}
       </div>
+      <a
+        href="https://operator.roasell.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 inline-flex items-center justify-center gap-1.5 w-full text-roasell-gold font-semibold text-xs md:text-sm hover:text-roasell-goldLight hover:underline transition-colors border-t border-gray-100 pt-3"
+      >
+        Operatör eğitimi hakkında daha fazla bilgi al
+        <ArrowUpRight className="w-3.5 h-3.5" />
+      </a>
     </div>
   );
 };
