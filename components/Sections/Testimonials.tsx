@@ -12,7 +12,8 @@ const getVimeoId = (src: string): string => {
 const VideoThumbCard = ({ item }: { item: any }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = getVimeoId(item.videoSrc);
-  const thumbUrl = `https://vumbnail.com/${videoId}.jpg`;
+  // Bump `v` when you update the Vimeo thumbnail and the carousel still shows the old one.
+  const thumbUrl = `https://vumbnail.com/${videoId}.jpg?v=2`;
   const label = item.title || item.name || 'Tecrübe';
 
   return (
@@ -39,7 +40,7 @@ const VideoThumbCard = ({ item }: { item: any }) => {
           <img
             src={thumbUrl}
             alt={label}
-            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+            className="absolute inset-0 w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
             loading="lazy"
           />
           <div className="absolute inset-0 flex items-center justify-center">
