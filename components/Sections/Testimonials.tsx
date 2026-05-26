@@ -55,18 +55,22 @@ const VideoThumbCard = ({ item, onClick }: { item: any; onClick: () => void }) =
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black to-transparent">
-        <div className="flex flex-col gap-1">
-          {item.resultValue && (
-            <span className="text-[8px] md:text-[9px] font-bold text-green-400 bg-green-500/20 px-1.5 py-0.5 rounded border border-green-500/30 self-start italic">
-              {item.resultValue}
-            </span>
-          )}
-          <h4 className="text-white text-[10px] md:text-xs font-bold truncate leading-tight">
-            {item.title || item.name}
-          </h4>
+      {(item.title || item.name || item.resultValue) && (
+        <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black to-transparent">
+          <div className="flex flex-col gap-1">
+            {item.resultValue && (
+              <span className="text-[8px] md:text-[9px] font-bold text-green-400 bg-green-500/20 px-1.5 py-0.5 rounded border border-green-500/30 self-start italic">
+                {item.resultValue}
+              </span>
+            )}
+            {(item.title || item.name) && (
+              <h4 className="text-white text-[10px] md:text-xs font-bold truncate leading-tight">
+                {item.title || item.name}
+              </h4>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -88,6 +92,8 @@ const ImageThumbCard = ({ item, onClick }: { item: any; onClick: () => void }) =
 
 const Testimonials: React.FC = () => {
   const [activeMedia, setActiveMedia] = useState<any>(null);
+  const videos = TESTIMONIALS.filter(t => t.type === 'video');
+  const others = TESTIMONIALS.filter(t => t.type !== 'video');
 
   return (
     <section className="py-12 md:py-20 bg-roasell-black relative">
@@ -101,25 +107,48 @@ const Testimonials: React.FC = () => {
           <p className="text-gray-400 text-[10px] md:text-sm">Gerçek kullanıcılar, gerçek sonuçlar ve kanıtlanmış başarı.</p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-          {TESTIMONIALS.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-            >
-              {item.type === 'video' ? (
-                <VideoThumbCard item={item} onClick={() => setActiveMedia(item)} />
-              ) : item.type === 'image' ? (
-                <ImageThumbCard item={item} onClick={() => setActiveMedia(item)} />
-              ) : (
-                <WhatsAppCard item={item} />
-              )}
-            </motion.div>
-          ))}
-        </div>
+        {videos.length > 0 && (
+          <div className="relative -mx-4 md:mx-0">
+            <div className="overflow-x-auto scrollbar-hide px-4 md:px-0 pb-2">
+              <div className="flex gap-3 md:gap-6 snap-x snap-mandatory">
+                {videos.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: Math.min(index * 0.04, 0.4) }}
+                    className="snap-start shrink-0 w-[72%] sm:w-[46%] md:w-[32%] lg:w-[24%]"
+                  >
+                    <VideoThumbCard item={item} onClick={() => setActiveMedia(item)} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            {/* Right-edge fade hint that there's more to scroll */}
+            <div className="pointer-events-none absolute right-0 top-0 bottom-2 w-8 md:w-12 bg-gradient-to-l from-roasell-black to-transparent hidden md:block" />
+          </div>
+        )}
+
+        {others.length > 0 && (
+          <div className="mt-6 md:mt-10 grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+            {others.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+              >
+                {item.type === 'image' ? (
+                  <ImageThumbCard item={item} onClick={() => setActiveMedia(item)} />
+                ) : (
+                  <WhatsAppCard item={item} />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
 
       <AnimatePresence>

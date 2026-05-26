@@ -57,49 +57,33 @@ export const FEATURES: FeatureItem[] = [
   }
 ];
 
+const VIMEO_EMBED_PARAMS = 'title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479';
+const vimeoSrc = (id: string) => `https://player.vimeo.com/video/${id}?${VIMEO_EMBED_PARAMS}`;
+
+const NEW_TESTIMONIAL_VIDEO_IDS = [
+  '1195627606',
+  '1195627881',
+  '1195627531',
+  '1195626597',
+  '1195627207',
+  '1195627462',
+  '1195627675',
+  '1195627030',
+  '1195626896',
+  '1195627292',
+  '1195626600',
+  '1195626599'
+];
+
 export const TESTIMONIALS: TestimonialItem[] = [
-  {
-    id: 'halil',
-    name: 'Halil Bey',
+  ...NEW_TESTIMONIAL_VIDEO_IDS.map<TestimonialItem>(id => ({
+    id: `vimeo-${id}`,
+    name: '',
+    title: '',
     type: 'video',
-    title: 'Halil Aydın Başarı Videosu',
-    videoSrc: 'https://player.vimeo.com/video/1057536719?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',
+    videoSrc: vimeoSrc(id),
     platform: 'ROASELL'
-  },
-  {
-    id: 'sude',
-    name: 'Sude Hanım',
-    type: 'video',
-    title: 'Sude Hanım Başarı Hikayesi',
-    videoSrc: 'https://player.vimeo.com/video/1057483311?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',
-    platform: 'ROASELL'
-  },
-  {
-    id: 'oguzhan',
-    name: 'Oğuzhan Bey',
-    type: 'video',
-    title: '82 Günde Marka Kurduk',
-    videoSrc: 'https://www.youtube.com/embed/T4n_KuX1PwA?si=u0Xm7mRdqPpiKgi6',
-    platform: 'ROASELL',
-    resultValue: '₺703.919,78'
-  },
-  {
-    id: 'efe',
-    name: 'Efe',
-    type: 'video',
-    title: 'Trendyol\'dan Sonra Shopify',
-    videoSrc: 'https://www.youtube.com/embed/EB_mM56p8MM?si=rA8rUsOtasFjM7m7',
-    platform: 'ROASELL'
-  },
-  {
-    id: 'rumeysa',
-    name: 'Rümeysa Hanım',
-    type: 'video',
-    title: 'Rümeysa Hanım',
-    videoSrc: 'https://player.vimeo.com/video/1057543862?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',
-    platform: 'ROASELL',
-    resultValue: '1.000.000₺+'
-  },
+  })),
   {
     id: 'elxan',
     name: 'Elxan Bey',
