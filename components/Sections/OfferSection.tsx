@@ -4,6 +4,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, ShieldCheck, Lock, ChevronDown, ChevronUp } from 'lucide-react';
 import Button from '../ui/Button';
+import EducationModules from '../ui/EducationModules';
 
 // Using the key from env or a placeholder if missing for dev safety
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_placeholder');
@@ -324,6 +325,10 @@ const OfferSection: React.FC = () => {
                                             </li>
                                         ))}
                                     </ul>
+                                </AccordionItem>
+
+                                <AccordionItem title="47$ Değerindeki Operatör Eğitimi ÜCRETSİZ!" titleClassName="text-red-600 text-lg" defaultOpen={false}>
+                                    <EducationModules />
                                 </AccordionItem>
                             </div>
 

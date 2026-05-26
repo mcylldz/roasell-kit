@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Gift } from 'lucide-react';
 import Button from './Button';
+import EducationModules from './EducationModules';
 
 const STORAGE_KEY = 'operator_promo_seen';
 
@@ -54,7 +55,7 @@ const PromoModal: React.FC = () => {
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-roasell-black border-2 border-roasell-gold rounded-2xl p-6 md:p-8 text-center shadow-2xl shadow-roasell-gold/30"
+            className="relative w-full max-w-lg bg-roasell-black border-2 border-roasell-gold rounded-2xl p-6 md:p-8 text-center shadow-2xl shadow-roasell-gold/30 max-h-[90vh] overflow-y-auto"
           >
             <button
               onClick={close}
@@ -75,7 +76,7 @@ const PromoModal: React.FC = () => {
             >
               Kısa bir süreliğine{' '}
               <span className="text-roasell-gold">Roasell Kit</span>'i satın alanlara{' '}
-              <span className="text-white">97$ değerindeki</span>{' '}
+              <span className="text-white">47$ değerindeki</span>{' '}
               <span className="text-roasell-goldLight">Operatör Eğitimi</span>{' '}
               <span className="text-roasell-goldLight underline decoration-roasell-gold/60 underline-offset-4">
                 ÜCRETSİZ
@@ -95,6 +96,10 @@ const PromoModal: React.FC = () => {
             >
               FIRSATTAN FAYDALAN
             </Button>
+
+            <div className="mt-6">
+              <EducationModules />
+            </div>
           </motion.div>
         </motion.div>
       )}
