@@ -98,7 +98,7 @@ const PromoModal: React.FC = () => {
             </Button>
 
             <div className="mt-6">
-              <EducationModules title="Operatör Eğitimi Modülleri" />
+              <EducationModules />
             </div>
           </motion.div>
         </motion.div>

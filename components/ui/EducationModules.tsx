@@ -12,18 +12,12 @@ const MODULES: { title: string; duration: string }[] = [
 
 const TOTAL = '6 Saat 30 Dakika';
 
-interface EducationModulesProps {
-  title?: string;
-}
-
-const EducationModules: React.FC<EducationModulesProps> = ({
-  title = 'EĞİTİM MODÜLLERİ — 6+ SAAT İÇERİK',
-}) => {
+const EducationModules: React.FC = () => {
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-3 md:p-4 text-left">
       <div className="flex items-center gap-2 text-roasell-gold font-bold text-xs md:text-sm uppercase tracking-wide mb-3 px-1">
         <Clock className="w-4 h-4" />
-        <span>{title}</span>
+        <span>Operatör Eğitimi Modülleri</span>
       </div>
       <ul className="space-y-1.5">
         {MODULES.map((m, i) => (
