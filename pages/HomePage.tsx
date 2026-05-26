@@ -9,6 +9,7 @@ import Features from '../components/Sections/Features';
 import ProgramFlow from '../components/Sections/ProgramFlow';
 import Testimonials from '../components/Sections/Testimonials';
 import OfferSection from '../components/Sections/OfferSection';
+import FaqSection from '../components/Sections/FaqSection';
 import Footer from '../components/Sections/Footer';
 import PromoModal from '../components/ui/PromoModal';
 
@@ -30,6 +31,7 @@ const HomePage: React.FC = () => {
                 <ProgramFlow />
                 <Testimonials />
                 <OfferSection />
+                <FaqSection />
             </main>
             <Footer />
             <PromoModal />
