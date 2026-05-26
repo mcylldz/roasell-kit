@@ -43,7 +43,7 @@ const VideoThumbCard = ({ item }: { item: any }) => {
             loading="lazy"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-roasell-black rounded-full flex items-center justify-center shadow-2xl border border-white/25 group-hover:scale-110 transition-transform">
               <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1" />
             </div>
           </div>
