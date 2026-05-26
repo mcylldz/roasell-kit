@@ -73,7 +73,7 @@ const Testimonials: React.FC = () => {
   const videos = TESTIMONIALS.filter(t => t.type === 'video');
 
   return (
-    <section className="py-12 md:py-20 bg-roasell-black relative">
+    <section className="py-12 md:py-20 bg-roasell-black relative overflow-x-hidden">
       <div className="absolute right-0 top-1/4 w-48 h-48 md:w-96 md:h-96 bg-roasell-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-4">
