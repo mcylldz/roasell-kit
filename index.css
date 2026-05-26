@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 /* Custom styles ported from index.html */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: #080d23;
   color: #ffffff;
@@ -318,4 +322,13 @@ body {
   height: 100vh !important;
   touch-action: none;
   -ms-touch-action: none;
+}
+
+/* Hide native scrollbar on horizontal scrollers (e.g. testimonial carousel) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
