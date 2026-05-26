@@ -75,23 +75,14 @@ const NEW_TESTIMONIAL_VIDEO_IDS = [
   '1195626599'
 ];
 
-export const TESTIMONIALS: TestimonialItem[] = [
-  ...NEW_TESTIMONIAL_VIDEO_IDS.map<TestimonialItem>(id => ({
-    id: `vimeo-${id}`,
-    name: '',
-    title: '',
-    type: 'video',
-    videoSrc: vimeoSrc(id),
-    platform: 'ROASELL'
-  })),
-  {
-    id: 'elxan',
-    name: 'Elxan Bey',
-    type: 'image',
-    image: '/assets/testimonials/elxan-real.jpg',
-    title: 'Elxan Bey Başarı Hikayesi'
-  }
-];
+export const TESTIMONIALS: TestimonialItem[] = NEW_TESTIMONIAL_VIDEO_IDS.map<TestimonialItem>(id => ({
+  id: `vimeo-${id}`,
+  name: '',
+  title: '',
+  type: 'video',
+  videoSrc: vimeoSrc(id),
+  platform: 'ROASELL'
+}));
 
 export const PROGRAM_STEPS: ProgramStep[] = [
   { day: 'Gün 1', title: 'Ürün araştırmaya başla' },
